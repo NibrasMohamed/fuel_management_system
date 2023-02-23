@@ -2,10 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Customer;
 use Illuminate\Http\Request;
 
-class CustomerController extends Controller
+class DashboardController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,9 +13,7 @@ class CustomerController extends Controller
      */
     public function index()
     {
-        $customers = Customer::get();
-
-        return view('pages.customers.index', ['customers' => $customers]);
+        return view('pages.dashboard');
     }
 
     /**

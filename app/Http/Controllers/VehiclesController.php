@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Customer;
+use App\Models\Vehicle;
 use Illuminate\Http\Request;
 
-class CustomerController extends Controller
+class VehiclesController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,9 +14,17 @@ class CustomerController extends Controller
      */
     public function index()
     {
-        $customers = Customer::get();
+        $vehicles = Vehicle::join('vehicle_types', 'vehicle_types.id', 'vehicles.type_id')
+                            ->join('customers', 'customers.id', 'vehicles.customer_id')
+                            ->select(
+                                'vehicles.*',
+                                'vehicle_types.type_name as type',
+                                'customers.name as customer',
+                                'vehicle_types.quota'
+                            )
+                            ->get();
 
-        return view('pages.customers.index', ['customers' => $customers]);
+        return view('pages.vehicle.index', ['vehicles' => $vehicles]);
     }
 
     /**

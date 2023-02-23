@@ -13,7 +13,7 @@ class TokenController extends Controller
      */
     public function index()
     {
-        //
+        return view('pages.token.view_tokens');
     }
 
     /**

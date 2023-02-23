@@ -2,7 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Customer;
+use App\Models\User;
+use App\Models\Vehicle;
+use App\Models\VehicleType;
+use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class RegisterController extends Controller
 {
@@ -13,7 +19,8 @@ class RegisterController extends Controller
      */
     public function index()
     {
-        return view('register.register');
+        $vehicle_types = VehicleType::get();
+        return view('register.register', ['vehicle_types' => $vehicle_types]);
     }
 
     /**
@@ -34,7 +41,42 @@ class RegisterController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'user_name' => 'string|required|unique:users,name',
+            'email' => 'email|required',
+            'name' => 'string',
+            'phone_no' => 'string|required',
+            'password' => 'string|required',
+            'reg_no' => 'string|required',
+            'vehicle_type' => 'string|required',
+        ]);
+    
+        try {
+            $user = User::create([
+                'name' => $request->user_name,
+                'email' => $request->email,
+                'password' => Hash::make($request->password),
+                'role_id' => 3,
+            ]);
+    
+            $customer = Customer::create([
+                'name' => $request->name,
+                'email' => $request->email,
+                'phone_number' => $request->phone_no,
+                'address' => null,
+                'user_id' => $user->id        
+            ]);
+    
+            $vehicle = Vehicle::create([
+                'registration_number' => $request->reg_no,
+                'customer_id' => $customer->id,
+                'type_id' => $request->vehicle_type
+            ]);
+    
+            return redirect()->back()->with('success', 'Vehicle added successfully.');
+        } catch (Exception $e) {
+            return redirect()->back()->with('error', $e->getMessage());
+        }
     }
 
     /**
@@ -45,7 +87,7 @@ class RegisterController extends Controller
      */
     public function show($id)
     {
-        //
+        
     }
 
     /**

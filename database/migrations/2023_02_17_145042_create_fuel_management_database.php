@@ -54,6 +54,7 @@ class CreateFuelManagementDatabase extends Migration
             $table->string('email')->unique();
             $table->string('phone_number');
             $table->text('address');
+            $table->bigInteger('user_id');
             $table->timestamps();
         });
 

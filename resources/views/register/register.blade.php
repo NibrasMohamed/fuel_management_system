@@ -30,16 +30,20 @@
       <div class="login_wrapper">
         <div class="animate form login_form">
           <section class="login_content">
-            <form>
+            <form action="{{ url('login') }}" method="POST" id="login_form">
+                @csrf
               <h1>Login Form</h1>
               <div>
-                <input type="text" class="form-control" placeholder="Username" required="" />
+                <input type="text" class="form-control" placeholder="Username" name="user_name" required="" />
               </div>
               <div>
-                <input type="password" class="form-control" placeholder="Password" required="" />
+                <input type="password" class="form-control" placeholder="Password" name="password" required="" />
               </div>
+              @error('user_name')
+                  {{dd('in')}}
+              @enderror
               <div>
-                <a class="btn btn-default submit" href="index.html">Log in</a>
+                <button class="btn btn-default submit" type="submit" id="login_form">Log in</button>
                 <a class="reset_pass" href="#">Lost your password?</a>
               </div>
 
@@ -64,20 +68,72 @@
 
         <div id="register" class="animate form registration_form">
           <section class="login_content">
-            <form>
+            
+            <form action="{{ url('/register-customer')}}"  method="POST" name="register-customer-form" id="register-customer-form">
+                @csrf 
               <h1>Create Account</h1>
               <div>
-                <input type="text" class="form-control" placeholder="Username" required="" />
+                <input type="text" class="form-control" placeholder="Username" name="user_name" required="" />
               </div>
+                @error('user_name')
+                    <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
               <div>
-                <input type="email" class="form-control" placeholder="Email" required="" />
+                <input type="text" class="form-control" placeholder="Name" name="name" required="" />
               </div>
+              @error('name')
+                    <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
               <div>
-                <input type="password" class="form-control" placeholder="Password" required="" />
+                <input type="email" class="form-control" placeholder="Email" name="email" required="" />
               </div>
+              @error('email')
+                    <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
+
+              {{-- <div>
+                <select name="station" class="form-control" id="station">
+                     @foreach ($stations as $station)
+                         <option value="{{ $station->id }}"> {{ $station->station_name }} </option>
+                     @endforeach
+                </select>
+               </div> --}}
+
               <div>
-                <a class="btn btn-default submit" href="index.html">Submit</a>
+                <input type="text" class="form-control" placeholder="Phone Number" name="phone_no" required="" />
               </div>
+              @error('phone_no')
+                    <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
+              <div>
+                <input type="password" class="form-control" placeholder="Password" name="password" required="" />
+              </div>
+              @error('password')
+                    <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
+              <div>
+                <input type="text" class="form-control" placeholder="Vehcicle Reg.No" name="reg_no" required="" />
+              </div>
+              @error('reg_no')
+                    <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
+              <div>
+               <select name="vehicle_type" class="form-control" id="vehicle_type">
+                    @foreach ($vehicle_types as $vehicle_type)
+                        <option value="{{ $vehicle_type->id }}"> {{ $vehicle_type->type_name }} </option>
+                    @endforeach
+               </select>
+              </div>
+              @error('vehicle_type')
+                    <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
+              
+
+             
+              {{-- <div>
+                <a class="btn btn-default submit" type="submit" id="register-customer-form">Submit</a>
+              </div> --}}
+              <button class="btn btn-default submit" type="submit" id="register-customer-form"> Submit </button>
 
               <div class="clearfix"></div>
 
@@ -100,4 +156,9 @@
       </div>
     </div>
   </body>
+    @if(session('success'))
+        <div class="alert alert-success">
+            {{ session('success') }}
+        </div>
+    @endif
 </html>
