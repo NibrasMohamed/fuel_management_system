@@ -149,6 +149,14 @@ class CreateFuelManagementDatabase extends Migration
             $table->enum('status', ['Pending', 'Paid', 'Cancelled']);
             $table->timestamps();
         });
+
+        Schema::create('messages', function (Blueprint $table){
+            $table->id();
+            $table->string('message', '200');
+            $table->foreignId('user_id');
+            $table->enum('status', ['not_read, read']);
+            $table->timestamps();
+        });
         
     }
 
