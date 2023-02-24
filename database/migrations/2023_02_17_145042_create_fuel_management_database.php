@@ -72,6 +72,9 @@ class CreateFuelManagementDatabase extends Migration
             $table->id();
             $table->foreignId('station_id')->constrained()->onDelete('cascade');
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
+            $table->string('first_name');
+            $table->string('last_name');
+            $table->integer('phone_no');
             $table->timestamps();
         });
 

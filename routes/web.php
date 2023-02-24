@@ -53,4 +53,5 @@ Route::group(['middleware' => 'auth'],function (){
 
     //route for customers
     Route::get('/customers', [CustomerController::class, 'index']);
+
 });
