@@ -71,17 +71,14 @@
                             <div class="item form-group">
                                 <label class="col-form-label col-md-3 col-sm-3 label-align">Gender</label>
                                 <div class="col-md-6 col-sm-6 ">
-                                    <div id="gender" class="btn-group" data-toggle="buttons">
-                                        <label class="btn btn-secondary" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
-                                            <input type="radio" name="gender" value="male" class="join-btn" data-parsley-multiple="gender"> &nbsp; Male &nbsp;
-                                        </label>
-                                        <label class="btn btn-primary" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
-                                            <input type="radio" name="gender" value="female" class="join-btn" data-parsley-multiple="gender"> Female
-                                        </label>
-                                    </div>
+                                    <select name="role" id="role">
+                                        @foreach ($roles as $role)
+                                            <option value="{{ $role->id }}">{{ $role->name }}</option>
+                                        @endforeach
+                                    </select>
                                 </div>
                             </div>
-                            <div class="item form-group">
+                            {{-- <div class="item form-group">
                                 <label class="col-form-label col-md-3 col-sm-3 label-align">Date Of Birth <span class="required">*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 ">
@@ -94,7 +91,7 @@
                                         }
                                     </script>
                                 </div>
-                            </div>
+                            </div> --}}
                             <div class="ln_solid"></div>
                             <div class="item form-group">
                                 <div class="col-md-6 col-sm-6 offset-md-3">
