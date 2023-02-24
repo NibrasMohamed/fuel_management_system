@@ -27,6 +27,9 @@ Route::post('login',[LoginController::class, 'login']);
 //routes for cutomer registration
 Route::post('/register-customer', [RegisterController::class,'store']);
 
+Route::get('/plain-page', function(){
+    return view('pages.painpage');
+});
 
 Route::group(['middleware' => 'auth'],function (){
     Route::get('/', function () {

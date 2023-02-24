@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Token;
 use Illuminate\Http\Request;
 
 class TokenController extends Controller
@@ -13,7 +14,9 @@ class TokenController extends Controller
      */
     public function index()
     {
-        return view('pages.token.view_tokens');
+        $tokens = Token::get();
+
+        return view('pages.token.view_tokens', ['tokens' => $tokens]);
     }
 
     /**

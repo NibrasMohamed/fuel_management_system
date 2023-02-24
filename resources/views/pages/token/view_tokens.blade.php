@@ -27,12 +27,36 @@
         <div class="col-md-12 col-sm-12  ">
           <div class="x_panel">
             <div class="x_title">
-              <h2>Plain Page</h2>
+              <h2>Tokens</h2>
               
               <div class="clearfix"></div>
             </div>
             <div class="x_content">
-                Add content to the page ...
+              <table id="datatable" class="table table-striped table-bordered" style="width:100%">
+                <thead>
+                  <tr>
+                    <th>Customer</th>
+                    <th>Vehicle No</th>
+                    <th>Requested Fuel</th>
+                    <th>Requested Date</th>
+                    <th>Time</th>
+                    <th>Amount</th>
+                  </tr>
+                </thead>
+
+
+                <tbody>
+                  {{-- @foreach ($tokens as $token)
+                  <tr>
+                    <td> {{ $token->name }} </td>
+                    <td> {{ $token->email }} </td>
+                    <td> {{ $token->phone_number }} </td>
+                    <td> {{ $token->address }} </td>
+                  </tr>    
+                  @endforeach --}}
+                 
+                </tbody>
+              </table>
             </div>
           </div>
         </div>
