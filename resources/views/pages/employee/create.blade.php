@@ -65,7 +65,7 @@
                             <div class="item form-group">
                                 <label for="middle-name" class="col-form-label col-md-3 col-sm-3 label-align">Middle Name / Initial</label>
                                 <div class="col-md-6 col-sm-6 ">
-                                    <input id="middle-name" class="form-control" type="text" name="middle-name">
+                                    <input id="phone_no" class="form-control" type="text" name="middle-name">
                                 </div>
                             </div>
                             <div class="item form-group">
