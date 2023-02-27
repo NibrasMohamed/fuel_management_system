@@ -4,9 +4,9 @@
         <ul class="nav side-menu">
             <li><a><i class="fa fa-home"></i> Quota </a></li>
             <li><a href="/token"><i class="fa fa-edit"></i> Tokens </a></li>
-            <li><a href="/send-sms"><i class="fa fa-home"></i> Send SMS </a></li>
+            <li><a href="/token-payment"><i class="fa fa-home"></i> Token Payment </a></li>
             <li><a href="/fuel-request"><i class="fa fa-home"></i> Fuel Request </a></li>
-            <li><a href="/shedule"><i class="fa fa-desktop"></i> Shedule </a></li>
+            <li><a href="/schedule"><i class="fa fa-desktop"></i> Shedule </a></li>
             <li><a><i class="fa fa-sitemap"></i> Customers <span class="fa fa-chevron-down"></span></a>
                 <ul class="nav child_menu">
                     <li><a href="/customers"> View Customers </a></li>
@@ -75,7 +75,12 @@
                     <li><a href="fixed_footer.html">Fixed Footer</a></li>
                 </ul>
             </li> --}}
+            <li><a href="/fuel-request"><i class="fa fa-edit"></i> My Tokens </a></li>
+            <li><a href="/request-token"><i class="fa fa-edit"></i> Request Token </a></li> 
+            <li><a href="/fuel-availabilty"><i class="fa fa-edit"></i> Fuel Availabilty </a></li> 
         </ul>
+        
+
     </div>
     {{-- <div class="menu_section">
         <h3>Live On</h3>

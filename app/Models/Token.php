@@ -19,6 +19,8 @@ class Token extends Model
         'fuel_quantity',
         'expected_time',
         'status',
+        'payment',
+        'date'
     ];
 
     public function customer()

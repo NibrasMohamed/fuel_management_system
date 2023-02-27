@@ -52,4 +52,14 @@ class User extends Authenticatable
     {
         return $this->hasMany(Message::class);
     }
+
+    public function customer()
+    {
+        return $this->hasOne(Customer::class, 'user_id', 'id');
+    }
+
+    public function station()
+    {
+        return $this->belongsTo(station::class);
+    }
 }

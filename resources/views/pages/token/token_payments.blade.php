@@ -1,3 +1,4 @@
+
 @extends('layouts.app')
 
 @section('custom_css')
@@ -32,18 +33,18 @@
     <div class="">
       <div class="page-title">
         <div class="title_left">
-          <h3>Employees</h3>
+          <h3>Payments</h3>
         </div>
 
         <div class="title_right">
-          <div class="col-md-5 col-sm-5   form-group pull-right top_search">
+          {{-- <div class="col-md-5 col-sm-5   form-group pull-right top_search">
             <div class="input-group">
               <input type="text" class="form-control" placeholder="Search for...">
               <span class="input-group-btn">
                 <button class="btn btn-default" type="button">Go!</button>
               </span>
             </div>
-          </div>
+          </div> --}}
         </div>
       </div>
 
@@ -53,53 +54,39 @@
         <div class="col-md-12 col-sm-12  ">
           <div class="x_panel">
             <div class="x_title">
-              <h2>Employee List</h2>
+              <h2>Tokens    </h2>
+              
               <div class="clearfix"></div>
             </div>
-            
             <div class="x_content">
-              @if(session('success'))
-                  <div class="alert alert-success">
-                      {{ session('success') }}
-                  </div>
-              @endif
               <table id="datatable" class="table table-striped table-bordered" style="width:100%">
                 <thead>
                   <tr>
-                    <th>First Name</th>
-                    <th>Last Name</th>
-                    <th>Email</th>
-                    <th>Phone No</th>
-                    <th>Role</th>
-                    <th>Action</th>
+                    <th>Customer</th>
+                    <th>Vehicle No</th>
+                    <th>Requested Fuel</th>
+                    <th>Requested Date</th>
+                    <th>Amount</th>
+                    <th>Payment</th>
                   </tr>
                 </thead>
 
 
                 <tbody>
-                  @foreach ($employees as $employee)
+                  @foreach ($tokens as $token)
                   <tr>
-                    <td> {{ $employee->first_name }} </td>
-                    <td> {{ $employee->last_name }} </td>
-                    <td> {{ $employee->user->email }} </td>
-                    <td> {{ $employee->phone_no }} </td>
-                    <td> {{ $employee->user->role->name }} </td>
-                    <td> <a href="/delete-employee/{{$employee->id}}" class="btn btn-danger">Remove</a></td>
+                    <td> {{ $token->user->customer->first_name }} </td>
+                    <td> {{ $token->token->vehicle->registration_number }} </td>
+                    <td> {{ $token->fuel_quantity }} </td>
+                    <td> {{ $token->expected_time }} </td>
+                    <td> ${{ $token->fuel_quantity * 400 }} </td>
+                    <td> ${{ $token->payment == 1 ? "Payed" : "Payment pending" }} </td>
                   </tr>    
                   @endforeach
-                  {{-- <tr>
-                    <td>Tiger Nixon</td>
-                    <td>System Architect</td>
-                    <td>Edinburgh</td>
-                    <td>61</td>
-                    <td>2011/04/25</td>
-                    <td>$320,800</td>
-                  </tr> --}}
                  
                 </tbody>
               </table>
             </div>
-
           </div>
         </div>
       </div>

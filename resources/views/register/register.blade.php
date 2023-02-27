@@ -40,7 +40,7 @@
                 <input type="password" class="form-control" placeholder="Password" name="password" required="" />
               </div>
               @error('user_name')
-                  {{dd('in')}}
+                  {{-- {{dd('in')}} --}}
               @enderror
               <div>
                 <button class="btn btn-default submit" type="submit" id="login_form">Log in</button>
@@ -58,8 +58,8 @@
                 <br />
 
                 <div>
-                  <h1><i class="fa fa-paw"></i> Fuel In!</h1>
-                  {{-- <p>©2016 All Rights Reserved. Gentelella Alela! is a Bootstrap 4 template. Privacy and Terms</p> --}}
+                  <h1><i class="fa fa-empire"></i> Fuel In!</h1>
+                  {{-- <p>©2016 All Rights Reserved. FuelIn! is a Bootstrap 4 template. Privacy and Terms</p> --}}
                 </div>
               </div>
             </form>
@@ -146,8 +146,8 @@
                 <br />
 
                 <div>
-                  <h1><i class="fa fa-paw"></i> Gentelella Alela!</h1>
-                  <p>©2016 All Rights Reserved. Gentelella Alela! is a Bootstrap 4 template. Privacy and Terms</p>
+                  <h1><i class="fa fa-empire"></i> FuelIn</h1>
+                  <p>©2016 All Rights Reserved. FuelIn is a Bootstrap 4 template. Privacy and Terms</p>
                 </div>
               </div>
             </form>

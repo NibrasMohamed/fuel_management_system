@@ -17,6 +17,7 @@ class Customer extends Model
         'phone_number',
         'address',
         'user_id',
+        'station_id',
     ];
 
     public function vehicles()
@@ -32,5 +33,10 @@ class Customer extends Model
     public function user()
     {
         return $this->has(User::class);
+    }
+
+    public function station()
+    {
+        return $this->belongsTo(Station::class);
     }
 }

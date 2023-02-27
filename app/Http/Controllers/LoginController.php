@@ -28,4 +28,12 @@ class LoginController extends Controller
 
         return redirect('/register')->with('error', 'Username or  password Incorrect.');
     }
+
+    public function logout(Request $request)
+    {
+        $user = auth()->user();
+        Auth::logout($user);
+
+        return redirect('/register');
+    }
 }

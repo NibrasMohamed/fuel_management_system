@@ -1,5 +1,31 @@
 @extends('layouts.app')
 
+@section('custom_css')
+  <!-- Datatables -->
+    
+  <link href="{{ asset('vendors/datatables.net-bs/css/dataTables.bootstrap.min.css') }}" rel="stylesheet">
+  <link href="{{ asset('vendors/datatables.net-buttons-bs/css/buttons.bootstrap.min.css') }}" rel="stylesheet">
+  <link href="{{ asset('vendors/datatables.net-fixedheader-bs/css/fixedHeader.bootstrap.min.css') }}" rel="stylesheet">
+  <link href="{{ asset('vendors/datatables.net-responsive-bs/css/responsive.bootstrap.min.css') }}" rel="stylesheet">
+  <link href="{{ asset('vendors/datatables.net-scroller-bs/css/scroller.bootstrap.min.css') }}" rel="stylesheet">
+@endsection
+<?php     ?>
+@section('custom_js')
+        <!-- Datatables -->
+    <script src="{{ asset('vendors/datatables.net/js/jquery.dataTables.min.js') }}"></script>
+    <script src="{{ asset('vendors/datatables.net-bs/js/dataTables.bootstrap.min.js') }}"></script>
+    <script src="{{ asset('vendors/datatables.net-buttons/js/dataTables.buttons.min.js') }}"></script>
+    <script src="{{ asset('vendors/datatables.net-buttons-bs/js/buttons.bootstrap.min.js') }}"></script>
+    <script src="{{ asset('vendors/datatables.net-buttons/js/buttons.flash.min.js') }}"></script>
+    <script src="{{ asset('vendors/datatables.net-buttons/js/buttons.html5.min.js') }}"></script>
+    <script src="{{ asset('vendors/datatables.net-buttons/js/buttons.print.min.js') }}"></script>
+    <script src="{{ asset('vendors/datatables.net-fixedheader/js/dataTables.fixedHeader.min.js') }}"></script>
+    <script src="{{ asset('vendors/datatables.net-keytable/js/dataTables.keyTable.min.js') }}"></script>
+    <script src="{{ asset('vendors/datatables.net-responsive/js/dataTables.responsive.min.js') }}"></script>
+    <script src="{{ asset('vendors/datatables.net-responsive-bs/js/responsive.bootstrap.js') }}"></script>
+    <script src="{{ asset('vendors/datatables.net-scroller/js/dataTables.scroller.min.js') }}"></script>
+@endsection
+
 @section('content')
 <!-- page content -->
 <div class="right_col" role="main">
@@ -27,7 +53,7 @@
         <div class="col-md-12 col-sm-12  ">
           <div class="x_panel">
             <div class="x_title">
-              <h2>Tokens</h2>
+              <h2>Tokens    </h2>
               
               <div class="clearfix"></div>
             </div>
@@ -40,20 +66,24 @@
                     <th>Requested Fuel</th>
                     <th>Requested Date</th>
                     <th>Time</th>
-                    <th>Amount</th>
+                    <th>Status</th>
+                    <th>Action</th>
                   </tr>
                 </thead>
 
 
                 <tbody>
-                  {{-- @foreach ($tokens as $token)
+                  @foreach ($tokens as $token)
                   <tr>
-                    <td> {{ $token->name }} </td>
-                    <td> {{ $token->email }} </td>
-                    <td> {{ $token->phone_number }} </td>
-                    <td> {{ $token->address }} </td>
+                    <td> {{ $token->customer->name }} </td>
+                    <td> {{ $token->vehicle->registration_number }} </td>
+                    <td> {{ $token->fuel_quantity }} L</td>
+                    <td> {{ $token->date }} </td>
+                    <td> {{ $token->expected_time }} </td>
+                    <td> {{ $token->status }} </td>
+                    <td> <a href="/update-request/{{$token->id}}?accept=1" class="btn btn-success"> Accept</a><a href="/update-request/{{$token->id}}?accept=0"  class="btn btn-danger">Decline</a><a href="/delete-request/{{$token->id}}?accept=0"  class="btn btn-danger">Delete</a> </td>
                   </tr>    
-                  @endforeach --}}
+                  @endforeach
                  
                 </tbody>
               </table>

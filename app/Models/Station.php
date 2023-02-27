@@ -41,5 +41,10 @@ class Station extends Model
     {
         return $this->hasMany(Delivery::class, 'station_id');
     }
+
+    public function customers()
+    {
+        return $this->hasMany(Customer::class, 'station_id');
+    }
     
 }
