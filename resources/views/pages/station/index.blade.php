@@ -107,19 +107,9 @@
                         <a href="/update-fuel-request/{{$fuel_request->id}}?status=Canceled" class="btn btn-danger">Decline</a>
                         <a href="/update-fuel-request/{{$fuel_request->id}}?status=OnProgress" class="btn btn-warning">On Progress</a>
                         <a href="/update-fuel-request/{{$fuel_request->id}}?status=Delivered" class="btn btn-success">Delivered</a>
-                        {{-- <a href="/update-request/{{$employee->id}}?status=Canceled" class="btn btn-danger">Decline</a> --}}
                     </td>
                   </tr>    
                   @endforeach
-                  {{-- <tr>
-                    <td>Tiger Nixon</td>
-                    <td>System Architect</td>
-                    <td>Edinburgh</td>
-                    <td>61</td>
-                    <td>2011/04/25</td>
-                    <td>$320,800</td>
-                  </tr> --}}
-                 
                 </tbody>
               </table>
             </div>

@@ -36,7 +36,7 @@
         </div>
 
         <div class="title_right">
-          <div class="col-md-5 col-sm-5   form-group pull-right top_search">
+          <div class="form-group pull-right top_search">
             <a href="/customers?print=true" class="btn btn-success"><i class="fa fa-floppy-o"></i> Print</a>
           </div>
         </div>

@@ -66,31 +66,35 @@ Route::group(['middleware' => 'auth'], function () {
         //route for customers
         Route::get('/customers', [CustomerController::class, 'index']);
 
-        //route for schedule
-        Route::get('/schedule', [ScheduleController::class, 'index']);
+        
     });
 
     //routes for head-office
     Route::group(['middleware' => 'head_office'], function () {
 
         //routes for fuel request
+        Route::get('/main-dashboard', [DashboardController::class, 'create']);
         Route::get('/fuel-request', [FuelRequestController::class, 'index']);
         Route::get('/update-fuel-request/{id}', [FuelRequestController::class, 'update']);
-        // Route::get('/dashboard', [DashboardController::class, 'index']);
+        //route for schedule
+        Route::get('/schedule', [ScheduleController::class, 'index']);
         
     });
 
     //routes for token
-    // Route::get('/token-payment', [TokenController::class, 'getTokenPayment']);
     Route::post('/request-token/{id}', [TokenController::class, 'requestToken']);
     Route::get('/request-token', [TokenController::class, 'create']);
+    Route::get('/view-qr/{filename}', [TokenController::class, 'viewQR']);
+    Route::get('/my-token/{id}', [TokenController::class, 'show']);
     // Route::get('/update-request/{id}', [TokenController::class, 'update']);
     // Route::get('/delete-request/{id}', [TokenController::class, 'destroy']);
 
-
+    Route::get('/tokens', [EmployeeController::class, 'viewTokens']);
+    Route::get('/view-token/{id}', [PaymentController::class, 'show']);
 
 
     //route for payment
     Route::get('/fuel-availabilty', [FuelRequestController::class, 'create']);
     Route::post('/make-fuel-request', [FuelRequestController::class, 'store']);
+    Route::post('/make-payment/{id}', [PaymentController::class, 'store']);
 });

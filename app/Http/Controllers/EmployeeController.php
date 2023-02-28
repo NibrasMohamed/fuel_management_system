@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Employee;
 use App\Models\Role;
+use App\Models\Station;
+use App\Models\Token;
 use App\Models\User;
 use Exception;
 use Illuminate\Http\Request;
@@ -30,8 +32,9 @@ class EmployeeController extends Controller
      */
     public function create()
     {
-        $roles = Role::get();
-        return view('pages.employee.create', compact('roles'));
+        $roles = Role::where('name', '!=', 'Admin')->get();
+        $stations = Station::get();
+        return view('pages.employee.create', compact('roles', 'stations'));
     }
 
     /**
@@ -119,12 +122,22 @@ class EmployeeController extends Controller
     public function destroy($id)
     {
         $employee = Employee::findOrFail($id);
-        // dd($employee);
+        
         $user = $employee->user();
         $user->delete();
         $employee->delete();
         
 
         return redirect()->back()->with('success', 'successfully deleted the employee');
+    }
+
+    public function viewTokens(Request $request)
+    {
+        $user = auth()->user();
+        
+        $station_id = $user->employee->station_id;
+        $tokens = Token::where('station_id', $station_id)->get();
+
+        return view('pages.employee.token', compact('tokens'));
     }
 }

@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Station;
+use App\Models\Token;
 use App\Models\Vehicle;
 use Illuminate\Http\Request;
 
@@ -35,9 +37,22 @@ class PaymentController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
-        //
+    public function store(Request $request, $id)
+    {   
+        $token = Token::find($id);
+        // dd('in');
+        if (!$token) {
+            abort(404, 'Token not found');
+        }else{
+            $token->status = "Payed";
+            $token->payment = 1 ;
+            $token->save();
+
+            $station = Station::where('id', $token->station_id)->first();
+            $station->fuel_stock = $station->fuel_stock - $token->fuel_quantity;
+            $station->save();
+            return redirect()->back()->with('success', 'Payment Success!');
+        }
     }
 
     /**
@@ -48,7 +63,9 @@ class PaymentController extends Controller
      */
     public function show($id)
     {
-        //
+        $token = Token::find($id);
+
+        return view('pages.token.view_qr', compact('token'));
     }
 
     /**

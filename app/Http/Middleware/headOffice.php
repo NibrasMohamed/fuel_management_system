@@ -18,7 +18,7 @@ class headOffice
     public function handle(Request $request, Closure $next)
     {
         // dd(auth()->user()->hasRole('Admin'));
-        if (!Auth::check() || !auth()->user()->hasRole('Admin') || auth()->user()->hasRole('Head-Office')) {
+        if (!Auth::check() || !auth()->user()->hasRole('Admin') && !auth()->user()->hasRole('Head-Office')) {
             if(auth()->user()->hasRole('User')){
                 return redirect('/request-token');
             }

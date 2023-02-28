@@ -23,7 +23,7 @@ class FuelRequestController extends Controller
         $fuel_requests = FuelRequest::get();
 
         if ($request->print == "true") {
-            // dd('in');
+            
             $pdf = PDF::loadView('pages.station.request_pdf', compact('fuel_requests'));
             return $pdf->stream('requests.pdf');
         }

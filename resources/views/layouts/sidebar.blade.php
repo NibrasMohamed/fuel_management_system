@@ -18,6 +18,8 @@
                     </ul>
                 </li>
 
+                <li><a href="/schedule"><i class="fa fa-desktop"></i> Shedule </a></li>
+
                 <li><a><i class="fa fa-desktop"></i> Employee Management<span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                         <li><a href="/employees">Employees</a></li>
@@ -28,10 +30,15 @@
 
             @if ($user->hasRole('Admin') || $user->hasRole('User'))
                 <li><a href="/request-token"><i class="fa fa-edit"></i> Request Token </a></li> 
-                <li><a href="/view-token"><i class="fa fa-qrcode"></i> View My Token </a></li> 
+                <li><a href="/my-token/{{auth()->user()->id}}"><i class="fa fa-qrcode"></i> View My Token </a></li> 
+            @endif
+
+            @if ($user->hasRole('Admin') || $user->hasRole('Employee'))
+                <li><a href="/tokens"><i class="fa fa-qrcode"></i> Tokens </a></li> 
             @endif
 
             @if ($user->hasRole('Admin') || $user->hasRole('Head-Office'))
+            <li><a href="/main-dashboard"><i class="fa fa-home"></i> Dashboard </a></li>
             <li><a href="/fuel-request"><i class="fa fa-edit"></i> Fuel Requests </a></li>
             <li><a href="/fuel-request"><i class="fa fa-home"></i> Fuel Request </a></li>
             <li><a href="/schedule"><i class="fa fa-desktop"></i> Shedule </a></li>

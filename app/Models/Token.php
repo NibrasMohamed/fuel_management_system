@@ -20,7 +20,8 @@ class Token extends Model
         'expected_time',
         'status',
         'payment',
-        'date'
+        'date',
+        'qr_code'
     ];
 
     public function customer()

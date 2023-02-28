@@ -23,7 +23,7 @@ class DashboardController extends Controller
      */
     public function create()
     {
-        //
+        return view('pages.head_office_dashboard');
     }
 
     /**

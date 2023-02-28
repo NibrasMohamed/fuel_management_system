@@ -72,8 +72,5 @@ class User extends Authenticatable
             return false;
         }
     }
-    // public function station()
-    // {
-    //     return $this->belongsTo(station::class);
-    // }
+   
 }

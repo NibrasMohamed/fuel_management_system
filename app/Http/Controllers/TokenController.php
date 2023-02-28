@@ -2,11 +2,18 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Customer;
+use App\Models\Message;
 use App\Models\Token;
+use App\Models\User;
 use App\Models\Vehicle;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Storage;
+use PDF;
+use QrCode;
 
 class TokenController extends Controller
 {
@@ -15,10 +22,13 @@ class TokenController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         $tokens = Token::get();
-        // dd($tokens->toArray());
+        if ($request->print == true) {
+            $pdf = PDF::loadView('pages.token.pdf', compact('tokens'));
+            return $pdf->download('monthly_token_report' . Carbon::now()->format('Y-m-d-H:m:s') . '.pdf');
+        }
         return view('pages.token.view_tokens', ['tokens' => $tokens]);
     }
 
@@ -52,8 +62,13 @@ class TokenController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show($id)
-    {
-        //
+    {   
+        // dd($id);
+        $customer = Customer::where('user_id', $id)->first();
+
+        $token = Token::where('customer_id', $customer->id)->first();
+
+        return view('pages.token.my_token', compact('token'));
     }
 
     /**
@@ -78,12 +93,26 @@ class TokenController extends Controller
     {
         $token = Token::find($id);
 
-        $token->status = $request->accept == 1?"accept":"declined";
+        $token->status = $request->accept == 1 ? "Accepted" : "Declined";
         $token->save();
 
-
-        if ($token->status == 1) {
-            
+        if ($token->status == 'Accepted') {
+            if (!$token->qr_code) {
+                $qr_string = url('/view-token/'.$token->id);
+                $qr_code = $this->generateQrCode($qr_string);
+                $token->qr_code = $qr_code;
+                $token->save();
+            }
+            // dd($token->customer->user->id);
+            $message = Message::create([
+                'message' => "Your request accepeted.please be On time!",
+                'user_id' => $token->customer->user->id
+            ]);
+        }else{
+            $message = Message::create([
+                'message' => "Your request has been denied!",
+                'user_id' => $token->customer->user->id
+            ]);
         }
         return redirect()->back()->with('success', 'Token Status Updated Successfully');
     }
@@ -120,18 +149,18 @@ class TokenController extends Controller
         $station =  $vehicle->customer->station;
         $customer = $vehicle->customer;
 
-        $token = Token::where('vehicle_id' , $id)->where('date', $this->datetoDate($request->date))->first();
+        $token = Token::where('vehicle_id', $id)->where('date', $this->datetoDate($request->date))->first();
         // dd()
         if ($token) {
             // dd('in');
             return redirect()->back()->with('error', 'already has a token');
-        }else{
+        } else {
             $token = Token::create([
                 'customer_id' => $customer->id,
                 'vehicle_id' => $vehicle->id,
                 'station_id' => $station->id,
                 'fuel_quantity' => $request['request-fuel'],
-                'date' => $this->datetoDate($request->date) ,
+                'date' => $this->datetoDate($request->date),
                 'expected_time' => $this->timeToDate($request->time)
             ]);
         }
@@ -164,19 +193,30 @@ class TokenController extends Controller
 
     public function generateQrCode($data)
     {
-        $data = $request->get('data');
-
-        $renderer = new Png();
-        $renderer->setHeight(250);
-        $renderer->setWidth(250);
-        $writer = new Writer($renderer);
-        $qrCode = $writer->writeString($data);
+     
+        $qrCode =  QrCode::encoding('UTF-8')->format('png')->size(250)->generate($data);
 
         $filename = uniqid() . '.png';
         Storage::disk('public')->put('qrcodes/' . $filename, $qrCode);
 
-        return response()->json([
-            'url' => Storage::disk('public')->url('qrcodes/' . $filename),
-        ]);
+        return $filename;
+
+    }
+
+    public function viewQR($filename)
+    {
+        $path = storage_path('app/public/qrcodes/' . $filename);
+
+        if (!File::exists($path)) {
+            abort(404);
+        }
+
+        $file = File::get($path);
+        $type = File::mimeType($path);
+
+        $response = Response::make($file, 200);
+        $response->header("Content-Type", $type);
+
+        return $response;
     }
 }

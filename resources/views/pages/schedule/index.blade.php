@@ -52,7 +52,7 @@
                         </div>
                         <div class="x_content">
                             <div class="row">
-                                <div class="col-md-3">
+                                <div class="col-md-3" hidden>
                                     <div class="sticky-top mb-3">
                                         <div class="card">
                                             <div class="card-header">
@@ -228,7 +228,7 @@
                 //Random default events
                 events: [],
                 editable: true,
-                droppable: true, // this allows things to be dropped onto the calendar !!!
+                droppable: true,
                 drop: function(info) {
                     var station_id = $(info.draggedEl).data('workshopid');
                     var start_date = info.dateStr;

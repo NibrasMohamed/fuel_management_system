@@ -122,6 +122,16 @@
                                     @enderror
                                 </div>
                                 <div class="item form-group">
+                                    <label class="col-form-label col-md-3 col-sm-3 label-align">Station</label>
+                                    <div class="col-md-6 col-sm-6 ">
+                                        <select name="station" id="station" class="form-control">
+                                            @foreach ($stations as $station)
+                                                <option value="{{ $station->id }}">{{ $station->station_name }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="item form-group">
                                     <label class="col-form-label col-md-3 col-sm-3 label-align">Role</label>
                                     <div class="col-md-6 col-sm-6 ">
                                         <select name="role" id="role" class="form-control">
