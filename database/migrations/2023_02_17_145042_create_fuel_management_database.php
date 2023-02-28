@@ -125,7 +125,7 @@ class CreateFuelManagementDatabase extends Migration
             $table->float('fuel_qty');
             $table->dateTime('requested_date');
             $table->dateTime('expected_time');
-            $table->enum('status', ['Scheduled', 'Delivered', 'Cancelled']);
+            $table->enum('status', ['Scheduled', 'Delivered', 'Cancelled', 'OnProgress']);
             $table->timestamps();
         });
     

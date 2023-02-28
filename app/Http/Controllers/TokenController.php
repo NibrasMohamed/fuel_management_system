@@ -6,6 +6,7 @@ use App\Models\Token;
 use App\Models\Vehicle;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class TokenController extends Controller
 {
@@ -114,7 +115,6 @@ class TokenController extends Controller
     public function requestToken(Request $request, $id)
     {
 
-        // dd($request->toArray());
         $user = auth()->user();
         $vehicle = Vehicle::find($id);
         $station =  $vehicle->customer->station;
@@ -164,7 +164,7 @@ class TokenController extends Controller
 
     public function generateQrCode($data)
     {
-        // $data = $request->get('data');
+        $data = $request->get('data');
 
         $renderer = new Png();
         $renderer->setHeight(250);

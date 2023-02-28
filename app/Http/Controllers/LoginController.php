@@ -24,6 +24,8 @@ class LoginController extends Controller
                 Auth::login($user);
                 return redirect('/dashboard');
             }
+        }else{
+            return redirect('/register')->with('error', 'Username or  password Incorrect.');
         }
 
         return redirect('/register')->with('error', 'Username or  password Incorrect.');

@@ -22,6 +22,7 @@ class User extends Authenticatable
         'email',
         'password',
         'role_id',
+        'station_id',
     ];
 
     /**
@@ -58,8 +59,21 @@ class User extends Authenticatable
         return $this->hasOne(Customer::class, 'user_id', 'id');
     }
 
-    public function station()
+    public function employee()
     {
-        return $this->belongsTo(station::class);
+        return $this->hasOne(Employee::class, 'user_id', 'id');
     }
+
+    public function hasRole($role)
+    {
+        if (auth()->user()->role->name == $role) {
+            return true;
+        }else{
+            return false;
+        }
+    }
+    // public function station()
+    // {
+    //     return $this->belongsTo(station::class);
+    // }
 }

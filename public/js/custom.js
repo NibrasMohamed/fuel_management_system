@@ -2945,78 +2945,78 @@ function init_echarts() {
 
     //echart Bar
 
-    if ($('#mainb').length) {
+    // if ($('#mainb').length) {
 
-        var echartBar = echarts.init(document.getElementById('mainb'), theme);
+    //     var echartBar = echarts.init(document.getElementById('mainb'), theme);
 
-        echartBar.setOption({
-            title: {
-                text: 'Graph title',
-                subtext: 'Graph Sub-text'
-            },
-            tooltip: {
-                trigger: 'axis'
-            },
-            legend: {
-                data: ['sales', 'purchases']
-            },
-            toolbox: {
-                show: false
-            },
-            calculable: false,
-            xAxis: [{
-                type: 'category',
-                data: ['1?', '2?', '3?', '4?', '5?', '6?', '7?', '8?', '9?', '10?', '11?', '12?']
-            }],
-            yAxis: [{
-                type: 'value'
-            }],
-            series: [{
-                name: 'sales',
-                type: 'bar',
-                data: [2.0, 4.9, 7.0, 23.2, 25.6, 76.7, 135.6, 162.2, 32.6, 20.0, 6.4, 3.3],
-                markPoint: {
-                    data: [{
-                        type: 'max',
-                        name: '???'
-                    }, {
-                        type: 'min',
-                        name: '???'
-                    }]
-                },
-                markLine: {
-                    data: [{
-                        type: 'average',
-                        name: '???'
-                    }]
-                }
-            }, {
-                name: 'purchases',
-                type: 'bar',
-                data: [2.6, 5.9, 9.0, 26.4, 28.7, 70.7, 175.6, 182.2, 48.7, 18.8, 6.0, 2.3],
-                markPoint: {
-                    data: [{
-                        name: 'sales',
-                        value: 182.2,
-                        xAxis: 7,
-                        yAxis: 183,
-                    }, {
-                        name: 'purchases',
-                        value: 2.3,
-                        xAxis: 11,
-                        yAxis: 3
-                    }]
-                },
-                markLine: {
-                    data: [{
-                        type: 'average',
-                        name: '???'
-                    }]
-                }
-            }]
-        });
+    //     echartBar.setOption({
+    //         title: {
+    //             text: 'Graph title',
+    //             subtext: 'Graph Sub-text'
+    //         },
+    //         tooltip: {
+    //             trigger: 'axis'
+    //         },
+    //         legend: {
+    //             data: ['sales', 'purchases']
+    //         },
+    //         toolbox: {
+    //             show: false
+    //         },
+    //         calculable: false,
+    //         xAxis: [{
+    //             type: 'category',
+    //             data: ['1?', '2?', '3?', '4?', '5?', '6?', '7?', '8?', '9?', '10?', '11?', '12?']
+    //         }],
+    //         yAxis: [{
+    //             type: 'value'
+    //         }],
+    //         series: [{
+    //             name: 'sales',
+    //             type: 'bar',
+    //             data: [2.0, 4.9, 7.0, 23.2, 25.6, 76.7, 135.6, 162.2, 32.6, 20.0, 6.4, 3.3],
+    //             markPoint: {
+    //                 data: [{
+    //                     type: 'max',
+    //                     name: '???'
+    //                 }, {
+    //                     type: 'min',
+    //                     name: '???'
+    //                 }]
+    //             },
+    //             markLine: {
+    //                 data: [{
+    //                     type: 'average',
+    //                     name: '???'
+    //                 }]
+    //             }
+    //         }, {
+    //             name: 'purchases',
+    //             type: 'bar',
+    //             data: [2.6, 5.9, 9.0, 26.4, 28.7, 70.7, 175.6, 182.2, 48.7, 18.8, 6.0, 2.3],
+    //             markPoint: {
+    //                 data: [{
+    //                     name: 'sales',
+    //                     value: 182.2,
+    //                     xAxis: 7,
+    //                     yAxis: 183,
+    //                 }, {
+    //                     name: 'purchases',
+    //                     value: 2.3,
+    //                     xAxis: 11,
+    //                     yAxis: 3
+    //                 }]
+    //             },
+    //             markLine: {
+    //                 data: [{
+    //                     type: 'average',
+    //                     name: '???'
+    //                 }]
+    //             }
+    //         }]
+    //     });
 
-    }
+    // }
 
 
 
@@ -3153,123 +3153,123 @@ function init_echarts() {
 
     //echart Gauge
 
-    if ($('#echart_gauge').length) {
+    // if ($('#echart_gauge').length) {
 
-        var echartGauge = echarts.init(document.getElementById('echart_gauge'), theme);
+    //     var echartGauge = echarts.init(document.getElementById('echart_gauge'), theme);
 
-        echartGauge.setOption({
-            tooltip: {
-                formatter: "{a} <br/>{b} : {c}%"
-            },
-            toolbox: {
-                show: true,
-                feature: {
-                    restore: {
-                        show: true,
-                        title: "Restore"
-                    },
-                    saveAsImage: {
-                        show: true,
-                        title: "Save Image"
-                    }
-                }
-            },
-            series: [{
-                name: 'Performance',
-                type: 'gauge',
-                center: ['50%', '50%'],
-                startAngle: 140,
-                endAngle: -140,
-                min: 0,
-                max: 100,
-                precision: 0,
-                splitNumber: 10,
-                axisLine: {
-                    show: true,
-                    lineStyle: {
-                        color: [
-                            [0.2, 'lightgreen'],
-                            [0.4, 'orange'],
-                            [0.8, 'skyblue'],
-                            [1, '#ff4500']
-                        ],
-                        width: 30
-                    }
-                },
-                axisTick: {
-                    show: true,
-                    splitNumber: 5,
-                    length: 8,
-                    lineStyle: {
-                        color: '#eee',
-                        width: 1,
-                        type: 'solid'
-                    }
-                },
-                axisLabel: {
-                    show: true,
-                    formatter: function (v) {
-                        switch (v + '') {
-                            case '10':
-                                return 'a';
-                            case '30':
-                                return 'b';
-                            case '60':
-                                return 'c';
-                            case '90':
-                                return 'd';
-                            default:
-                                return '';
-                        }
-                    },
-                    textStyle: {
-                        color: '#333'
-                    }
-                },
-                splitLine: {
-                    show: true,
-                    length: 30,
-                    lineStyle: {
-                        color: '#eee',
-                        width: 2,
-                        type: 'solid'
-                    }
-                },
-                pointer: {
-                    length: '80%',
-                    width: 8,
-                    color: 'auto'
-                },
-                title: {
-                    show: true,
-                    offsetCenter: ['-65%', -10],
-                    textStyle: {
-                        color: '#333',
-                        fontSize: 15
-                    }
-                },
-                detail: {
-                    show: true,
-                    backgroundColor: 'rgba(0,0,0,0)',
-                    borderWidth: 0,
-                    borderColor: '#ccc',
-                    width: 100,
-                    height: 40,
-                    offsetCenter: ['-60%', 10],
-                    formatter: '{value}%',
-                    textStyle: {
-                        color: 'auto',
-                        fontSize: 30
-                    }
-                },
-                data: [{
-                    value: 50,
-                    name: 'Performance'
-                }]
-            }]
-        });
+    //     echartGauge.setOption({
+    //         tooltip: {
+    //             formatter: "{a} <br/>{b} : {c}%"
+    //         },
+    //         toolbox: {
+    //             show: true,
+    //             feature: {
+    //                 restore: {
+    //                     show: true,
+    //                     title: "Restore"
+    //                 },
+    //                 saveAsImage: {
+    //                     show: true,
+    //                     title: "Save Image"
+    //                 }
+    //             }
+    //         },
+    //         series: [{
+    //             name: 'Performance',
+    //             type: 'gauge',
+    //             center: ['50%', '50%'],
+    //             startAngle: 140,
+    //             endAngle: -140,
+    //             min: 0,
+    //             max: 100,
+    //             precision: 0,
+    //             splitNumber: 10,
+    //             axisLine: {
+    //                 show: true,
+    //                 lineStyle: {
+    //                     color: [
+    //                         [0.2, 'lightgreen'],
+    //                         [0.4, 'orange'],
+    //                         [0.8, 'skyblue'],
+    //                         [1, '#ff4500']
+    //                     ],
+    //                     width: 30
+    //                 }
+    //             },
+    //             axisTick: {
+    //                 show: true,
+    //                 splitNumber: 5,
+    //                 length: 8,
+    //                 lineStyle: {
+    //                     color: '#eee',
+    //                     width: 1,
+    //                     type: 'solid'
+    //                 }
+    //             },
+    //             axisLabel: {
+    //                 show: true,
+    //                 formatter: function (v) {
+    //                     switch (v + '') {
+    //                         case '10':
+    //                             return 'a';
+    //                         case '30':
+    //                             return 'b';
+    //                         case '60':
+    //                             return 'c';
+    //                         case '90':
+    //                             return 'd';
+    //                         default:
+    //                             return '';
+    //                     }
+    //                 },
+    //                 textStyle: {
+    //                     color: '#333'
+    //                 }
+    //             },
+    //             splitLine: {
+    //                 show: true,
+    //                 length: 30,
+    //                 lineStyle: {
+    //                     color: '#eee',
+    //                     width: 2,
+    //                     type: 'solid'
+    //                 }
+    //             },
+    //             pointer: {
+    //                 length: '80%',
+    //                 width: 8,
+    //                 color: 'auto'
+    //             },
+    //             title: {
+    //                 show: true,
+    //                 offsetCenter: ['-65%', -10],
+    //                 textStyle: {
+    //                     color: '#333',
+    //                     fontSize: 15
+    //                 }
+    //             },
+    //             detail: {
+    //                 show: true,
+    //                 backgroundColor: 'rgba(0,0,0,0)',
+    //                 borderWidth: 0,
+    //                 borderColor: '#ccc',
+    //                 width: 100,
+    //                 height: 40,
+    //                 offsetCenter: ['-60%', 10],
+    //                 formatter: '{value}%',
+    //                 textStyle: {
+    //                     color: 'auto',
+    //                     fontSize: 30
+    //                 }
+    //             },
+    //             data: [{
+    //                 value: 50,
+    //                 name: 'Performance'
+    //             }]
+    //         }]
+    //     });
 
-    }
+    // }
 
     //echart Line
 
@@ -4034,70 +4034,70 @@ function init_echarts() {
 
     //echart Pie Collapse
 
-    if ($('#echart_pie2').length) {
+    // if ($('#echart_pie2').length) {
 
-        var echartPieCollapse = echarts.init(document.getElementById('echart_pie2'), theme);
+    //     var echartPieCollapse = echarts.init(document.getElementById('echart_pie2'), theme);
 
-        echartPieCollapse.setOption({
-            tooltip: {
-                trigger: 'item',
-                formatter: "{a} <br/>{b} : {c} ({d}%)"
-            },
-            legend: {
-                x: 'center',
-                y: 'bottom',
-                data: ['rose1', 'rose2', 'rose3', 'rose4', 'rose5', 'rose6']
-            },
-            toolbox: {
-                show: true,
-                feature: {
-                    magicType: {
-                        show: true,
-                        type: ['pie', 'funnel']
-                    },
-                    restore: {
-                        show: true,
-                        title: "Restore"
-                    },
-                    saveAsImage: {
-                        show: true,
-                        title: "Save Image"
-                    }
-                }
-            },
-            calculable: true,
-            series: [{
-                name: 'Area Mode',
-                type: 'pie',
-                radius: [25, 90],
-                center: ['50%', 170],
-                roseType: 'area',
-                x: '50%',
-                max: 40,
-                sort: 'ascending',
-                data: [{
-                    value: 10,
-                    name: 'rose1'
-                }, {
-                    value: 5,
-                    name: 'rose2'
-                }, {
-                    value: 15,
-                    name: 'rose3'
-                }, {
-                    value: 25,
-                    name: 'rose4'
-                }, {
-                    value: 20,
-                    name: 'rose5'
-                }, {
-                    value: 35,
-                    name: 'rose6'
-                }]
-            }]
-        });
+    //     echartPieCollapse.setOption({
+    //         tooltip: {
+    //             trigger: 'item',
+    //             formatter: "{a} <br/>{b} : {c} ({d}%)"
+    //         },
+    //         legend: {
+    //             x: 'center',
+    //             y: 'bottom',
+    //             data: ['rose1', 'rose2', 'rose3', 'rose4', 'rose5', 'rose6']
+    //         },
+    //         toolbox: {
+    //             show: true,
+    //             feature: {
+    //                 magicType: {
+    //                     show: true,
+    //                     type: ['pie', 'funnel']
+    //                 },
+    //                 restore: {
+    //                     show: true,
+    //                     title: "Restore"
+    //                 },
+    //                 saveAsImage: {
+    //                     show: true,
+    //                     title: "Save Image"
+    //                 }
+    //             }
+    //         },
+    //         calculable: true,
+    //         series: [{
+    //             name: 'Area Mode',
+    //             type: 'pie',
+    //             radius: [25, 90],
+    //             center: ['50%', 170],
+    //             roseType: 'area',
+    //             x: '50%',
+    //             max: 40,
+    //             sort: 'ascending',
+    //             data: [{
+    //                 value: 10,
+    //                 name: 'rose1'
+    //             }, {
+    //                 value: 5,
+    //                 name: 'rose2'
+    //             }, {
+    //                 value: 15,
+    //                 name: 'rose3'
+    //             }, {
+    //                 value: 25,
+    //                 name: 'rose4'
+    //             }, {
+    //                 value: 20,
+    //                 name: 'rose5'
+    //             }, {
+    //                 value: 35,
+    //                 name: 'rose6'
+    //             }]
+    //         }]
+    //     });
 
-    }
+    // }
 
     //echart Donut
 
@@ -4188,97 +4188,97 @@ function init_echarts() {
 
     //echart Pie
 
-    if ($('#echart_pie').length) {
+    // if ($('#echart_pie').length) {
 
-        var echartPie = echarts.init(document.getElementById('echart_pie'), theme);
+    //     var echartPie = echarts.init(document.getElementById('echart_pie'), theme);
 
-        echartPie.setOption({
-            tooltip: {
-                trigger: 'item',
-                formatter: "{a} <br/>{b} : {c} ({d}%)"
-            },
-            legend: {
-                x: 'center',
-                y: 'bottom',
-                data: ['Direct Access', 'E-mail Marketing', 'Union Ad', 'Video Ads', 'Search Engine']
-            },
-            toolbox: {
-                show: true,
-                feature: {
-                    magicType: {
-                        show: true,
-                        type: ['pie', 'funnel'],
-                        option: {
-                            funnel: {
-                                x: '25%',
-                                width: '50%',
-                                funnelAlign: 'left',
-                                max: 1548
-                            }
-                        }
-                    },
-                    restore: {
-                        show: true,
-                        title: "Restore"
-                    },
-                    saveAsImage: {
-                        show: true,
-                        title: "Save Image"
-                    }
-                }
-            },
-            calculable: true,
-            series: [{
-                name: '访问来源',
-                type: 'pie',
-                radius: '55%',
-                center: ['50%', '48%'],
-                data: [{
-                    value: 335,
-                    name: 'Direct Access'
-                }, {
-                    value: 310,
-                    name: 'E-mail Marketing'
-                }, {
-                    value: 234,
-                    name: 'Union Ad'
-                }, {
-                    value: 135,
-                    name: 'Video Ads'
-                }, {
-                    value: 1548,
-                    name: 'Search Engine'
-                }]
-            }]
-        });
+    //     echartPie.setOption({
+    //         tooltip: {
+    //             trigger: 'item',
+    //             formatter: "{a} <br/>{b} : {c} ({d}%)"
+    //         },
+    //         legend: {
+    //             x: 'center',
+    //             y: 'bottom',
+    //             data: ['Direct Access', 'E-mail Marketing', 'Union Ad', 'Video Ads', 'Search Engine']
+    //         },
+    //         toolbox: {
+    //             show: true,
+    //             feature: {
+    //                 magicType: {
+    //                     show: true,
+    //                     type: ['pie', 'funnel'],
+    //                     option: {
+    //                         funnel: {
+    //                             x: '25%',
+    //                             width: '50%',
+    //                             funnelAlign: 'left',
+    //                             max: 1548
+    //                         }
+    //                     }
+    //                 },
+    //                 restore: {
+    //                     show: true,
+    //                     title: "Restore"
+    //                 },
+    //                 saveAsImage: {
+    //                     show: true,
+    //                     title: "Save Image"
+    //                 }
+    //             }
+    //         },
+    //         calculable: true,
+    //         series: [{
+    //             name: '访问来源',
+    //             type: 'pie',
+    //             radius: '55%',
+    //             center: ['50%', '48%'],
+    //             data: [{
+    //                 value: 335,
+    //                 name: 'Direct Access'
+    //             }, {
+    //                 value: 310,
+    //                 name: 'E-mail Marketing'
+    //             }, {
+    //                 value: 234,
+    //                 name: 'Union Ad'
+    //             }, {
+    //                 value: 135,
+    //                 name: 'Video Ads'
+    //             }, {
+    //                 value: 1548,
+    //                 name: 'Search Engine'
+    //             }]
+    //         }]
+    //     });
 
-        var dataStyle = {
-            normal: {
-                label: {
-                    show: false
-                },
-                labelLine: {
-                    show: false
-                }
-            }
-        };
+    //     var dataStyle = {
+    //         normal: {
+    //             label: {
+    //                 show: false
+    //             },
+    //             labelLine: {
+    //                 show: false
+    //             }
+    //         }
+    //     };
 
-        var placeHolderStyle = {
-            normal: {
-                color: 'rgba(0,0,0,0)',
-                label: {
-                    show: false
-                },
-                labelLine: {
-                    show: false
-                }
-            },
-            emphasis: {
-                color: 'rgba(0,0,0,0)'
-            }
-        };
+    //     var placeHolderStyle = {
+    //         normal: {
+    //             color: 'rgba(0,0,0,0)',
+    //             label: {
+    //                 show: false
+    //             },
+    //             labelLine: {
+    //                 show: false
+    //             }
+    //         },
+    //         emphasis: {
+    //             color: 'rgba(0,0,0,0)'
+    //         }
+    //     };
 
-    }
+    // }
 
     //echart Mini Pie
 

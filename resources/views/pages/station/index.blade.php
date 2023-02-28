@@ -9,7 +9,7 @@
   <link href="{{ asset('vendors/datatables.net-responsive-bs/css/responsive.bootstrap.min.css') }}" rel="stylesheet">
   <link href="{{ asset('vendors/datatables.net-scroller-bs/css/scroller.bootstrap.min.css') }}" rel="stylesheet">
 @endsection
-<?php     ?>
+
 @section('custom_js')
         <!-- Datatables -->
     <script src="{{ asset('vendors/datatables.net/js/jquery.dataTables.min.js') }}"></script>
@@ -29,15 +29,37 @@
 @section('content')
 <!-- page content -->
 <div class="right_col" role="main">
+  <?php 
+
+    function textColor($params)
+    {
+        if ($params == "Scheduled") {
+            return "secondary";
+        }elseif ($params == "Delivered") {
+            return "success";
+        }elseif ($params == "OnProgress") {
+            return "primary";
+        }else {
+            return "danger";
+        }
+    }
+
+?>
     <div class="">
       <div class="page-title">
         <div class="title_left">
-          <h3>Tokens</h3>
+          <h3>Fuel Request</h3>
         </div>
 
         <div class="title_right">
-          <div class="col-md-5 col-sm-5   form-group pull-right top_search">
-            <a href="/token?print=true" class="btn btn-success"><i class="fa fa-floppy-o"></i> Print</a>
+          <div class="  form-group pull-right top_search">
+            <a href="/fuel-request?print=true" class="btn btn-success"><i class="fa fa-floppy-o"></i> Print</a>
+            {{-- <div class="input-group">
+              <input type="text" class="form-control" placeholder="Search for...">
+              <span class="input-group-btn">
+                <button class="btn btn-default" type="button">Go!</button>
+              </span>
+            </div> --}}
           </div>
         </div>
       </div>
@@ -48,41 +70,60 @@
         <div class="col-md-12 col-sm-12  ">
           <div class="x_panel">
             <div class="x_title">
-              <h2>Tokens    </h2>
-              
+              <h2>Fuel Request List</h2>
               <div class="clearfix"></div>
             </div>
+            
             <div class="x_content">
+              @if(session('success'))
+                  <div class="alert alert-success">
+                      {{ session('success') }}
+                  </div>
+              @endif
               <table id="datatable" class="table table-striped table-bordered" style="width:100%">
                 <thead>
                   <tr>
-                    <th>Customer</th>
-                    <th>Vehicle No</th>
+                    <th>Station</th>
+                    <th>District</th>
                     <th>Requested Fuel</th>
-                    <th>Requested Date</th>
-                    <th>Time</th>
-                    <th>Status</th>
+                    <th>Expected Date</th>
+                    <th>Expected Time</th>
+                    <th>Current Status</th>
                     <th>Action</th>
                   </tr>
                 </thead>
 
 
                 <tbody>
-                  @foreach ($tokens as $token)
+                  @foreach ($fuel_requests as $fuel_request)
                   <tr>
-                    <td> {{ $token->customer->name }} </td>
-                    <td> {{ $token->vehicle->registration_number }} </td>
-                    <td> {{ $token->fuel_quantity }} L</td>
-                    <td> {{ $token->date }} </td>
-                    <td> {{ $token->expected_time }} </td>
-                    <td> {{ $token->status }} </td>
-                    <td> <a href="/update-request/{{$token->id}}?accept=1" class="btn btn-success"> Accept</a><a href="/update-request/{{$token->id}}?accept=0"  class="btn btn-danger">Decline</a><a href="/delete-request/{{$token->id}}?accept=0"  class="btn btn-danger">Delete</a> </td>
+                    <td> {{ $fuel_request->station->station_name }} </td>
+                    <td> {{ $fuel_request->station->location->name }} </td>
+                    <td> {{ $fuel_request->fuel_qty }} Liters</td>
+                    <td> {{ $fuel_request->requested_date }} </td>
+                    <td> {{ $fuel_request->expected_time }} </td>
+                    <td><span class="badge badge-{{textColor($fuel_request->status)}}">{{ $fuel_request->status }}</span>   </td>
+                    <td> 
+                        <a href="/update-fuel-request/{{$fuel_request->id}}?status=Canceled" class="btn btn-danger">Decline</a>
+                        <a href="/update-fuel-request/{{$fuel_request->id}}?status=OnProgress" class="btn btn-warning">On Progress</a>
+                        <a href="/update-fuel-request/{{$fuel_request->id}}?status=Delivered" class="btn btn-success">Delivered</a>
+                        {{-- <a href="/update-request/{{$employee->id}}?status=Canceled" class="btn btn-danger">Decline</a> --}}
+                    </td>
                   </tr>    
                   @endforeach
+                  {{-- <tr>
+                    <td>Tiger Nixon</td>
+                    <td>System Architect</td>
+                    <td>Edinburgh</td>
+                    <td>61</td>
+                    <td>2011/04/25</td>
+                    <td>$320,800</td>
+                  </tr> --}}
                  
                 </tbody>
               </table>
             </div>
+
           </div>
         </div>
       </div>

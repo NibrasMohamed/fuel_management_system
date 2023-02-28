@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Customer;
+use App\Models\Role;
+use App\Models\Station;
 use App\Models\User;
 use App\Models\Vehicle;
 use App\Models\VehicleType;
@@ -20,7 +22,8 @@ class RegisterController extends Controller
     public function index()
     {
         $vehicle_types = VehicleType::get();
-        return view('register.register', ['vehicle_types' => $vehicle_types]);
+        $stations = Station::get();
+        return view('register.register', ['vehicle_types' => $vehicle_types, 'stations' => $stations]);
     }
 
     /**
@@ -50,13 +53,14 @@ class RegisterController extends Controller
             'reg_no' => 'string|required',
             'vehicle_type' => 'string|required',
         ]);
+        $role = Role::where('name', 'like', '%customer%')->first();
     
         try {
             $user = User::create([
                 'name' => $request->user_name,
                 'email' => $request->email,
                 'password' => Hash::make($request->password),
-                'role_id' => 3,
+                'role_id' => $role?$role->id:"4",
             ]);
     
             $customer = Customer::create([

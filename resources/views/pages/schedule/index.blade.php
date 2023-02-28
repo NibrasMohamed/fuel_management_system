@@ -163,7 +163,7 @@
                     // it doesn't need to have a start or end
                     var eventObject = {
                         title: $.trim($(this).text()), // use the element's text as the event title
-                        workshop_id: $(this).data('workshopid')
+                        station_id: $(this).data('workshopid')
                     }
                     // store the Event Object in the DOM element so we can get to it later
                     $(this).data('eventObject', eventObject)
@@ -213,7 +213,7 @@
                         textColor: window.getComputedStyle(eventEl, null).getPropertyValue('color'),
                         allDay: true,
                         sourceId: sourceId,
-                        workshop_id: sourceId,
+                        station_id: sourceId,
                     };
                 }
             });
@@ -230,12 +230,12 @@
                 editable: true,
                 droppable: true, // this allows things to be dropped onto the calendar !!!
                 drop: function(info) {
-                    var workshop_id = $(info.draggedEl).data('workshopid');
+                    var station_id = $(info.draggedEl).data('workshopid');
                     var start_date = info.dateStr;
                     var end_date = info.dateStr;
 
                     var data = JSON.stringify({
-                        workshop_id: workshop_id,
+                        station_id: station_id,
                         start: start_date,
                         end: end_date
                     });
@@ -286,11 +286,11 @@
                         var previos_end = moment(changeInfo.oldEvent.end).format('YYYY-MM-DD')
                     }
                     var event_title = changeInfo.event.title
-                    var workshop_id = changeInfo.event._def.extendedProps.workshop_id;
+                    var station_id = changeInfo.event._def.extendedProps.station_id;
 
 
                     var data = JSON.stringify({
-                        workshop_id: workshop_id,
+                        station_id: station_id,
                         start: start_date,
                         end: end_date,
                         prev_start: previos_start,
@@ -437,7 +437,7 @@
                         title: event.name,
                         start: from,
                         end: to,
-                        workshop_id: event.workshop_id,
+                        station_id: event.station_id,
                         allDay: true,
                         backgroundColor: color,
                         borderColor: color,

@@ -75,12 +75,12 @@
                 <tbody>
                   @foreach ($tokens as $token)
                   <tr>
-                    <td> {{ $token->user->customer->first_name }} </td>
-                    <td> {{ $token->token->vehicle->registration_number }} </td>
+                    <td> {{ $token->customer->name }} </td>
+                    <td> {{ $token->vehicle->registration_number }} </td>
                     <td> {{ $token->fuel_quantity }} </td>
                     <td> {{ $token->expected_time }} </td>
                     <td> ${{ $token->fuel_quantity * 400 }} </td>
-                    <td> ${{ $token->payment == 1 ? "Payed" : "Payment pending" }} </td>
+                    <td> {{ $token->payment == 1 ? "Payed" : "Payment pending" }} </td>
                   </tr>    
                   @endforeach
                  
