@@ -16,11 +16,15 @@ class manager
      * @return \Illuminate\Http\Response|\Illuminate\Http\RedirectResponse
      */
     public function handle(Request $request, Closure $next)
-    {
+    {   
         if (!Auth::check() || (!auth()->user()->hasRole('Admin') && !auth()->user()->hasRole('Manager'))) {
+            if (!Auth::check()) {
+                return redirect('/register');
+            }
             if(auth()->user()->hasRole('User')){
                 return redirect('/request-token');
             }
+            
             return redirect('/access-denied');
         }else{
             return $next($request);

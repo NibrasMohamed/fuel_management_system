@@ -118,6 +118,13 @@
                             <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
                         <div>
+                            <input type="text" class="form-control" placeholder="Address" name="address"
+                                required="" />
+                        </div>
+                        @error('address')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
+                        <div>
                             <input type="password" class="form-control" placeholder="Password" name="password"
                                 required="" />
                         </div>

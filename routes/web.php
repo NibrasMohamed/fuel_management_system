@@ -8,6 +8,7 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\ScheduleController;
+use App\Http\Controllers\StationController;
 use App\Http\Controllers\TokenController;
 use App\Http\Controllers\VehiclesController;
 use Illuminate\Support\Facades\Route;
@@ -35,17 +36,21 @@ Route::post('/register-customer', [RegisterController::class, 'store']);
 Route::get('/plain-page', function () {
     return view('pages.painpage');
 });
-
+Route::get('/', function(){
+   return redirect('/register');
+});
 Route::group(['middleware' => 'auth'], function () {
-
+    // Route::get('/', function(){
+    //     redirect('/main-dashboard');
+    // });
     //route for logout
     Route::get('/logout', [LoginController::class, 'logout']);
   
 
     //routes for manager
     Route::group(['middleware' => 'manager'], function () {
-        
         Route::get('/dashboard', [DashboardController::class, 'index']);
+        
 
         Route::get('/employees', [EmployeeController::class, 'index']);
         Route::get('/new-employee', [EmployeeController::class, 'create']);
@@ -76,6 +81,7 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('/main-dashboard', [DashboardController::class, 'create']);
         Route::get('/fuel-request', [FuelRequestController::class, 'index']);
         Route::get('/update-fuel-request/{id}', [FuelRequestController::class, 'update']);
+        Route::get('/stations', [StationController::class, 'index']);
         //route for schedule
         Route::get('/schedule', [ScheduleController::class, 'index']);
         

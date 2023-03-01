@@ -67,8 +67,9 @@ class RegisterController extends Controller
                 'name' => $request->name,
                 'email' => $request->email,
                 'phone_number' => $request->phone_no,
-                'address' => null,
-                'user_id' => $user->id        
+                'address' => $request->address,
+                'user_id' => $user->id,
+                'station_id' => $request->station    
             ]);
     
             $vehicle = Vehicle::create([

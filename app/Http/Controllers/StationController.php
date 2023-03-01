@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Customer;
+use App\Models\Station;
 use Carbon\Carbon;
-use PDF;
 use Illuminate\Http\Request;
+use PDF;
 
-class CustomerController extends Controller
+class StationController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,14 +16,15 @@ class CustomerController extends Controller
      */
     public function index(Request $request)
     {
-        $customers = Customer::get();
+        $stations = Station::get();
 
         if ($request->print == true) {
-            $pdf = PDF::loadView('pages.customers.pdf', compact('customers'));
-            return $pdf->download('Customer_report'.Carbon::now()->format('Y-m-d H:M:S').'.pdf');
+            $pdf = PDF::loadView('pages.station.pdf', compact('stations'));
+
+            return $pdf->download('StationsReport'.Carbon::now()->format('Y-m-d-H:M:S').'.pdf');
         }
 
-        return view('pages.customers.index', ['customers' => $customers]);
+        return view('pages.station.stations', compact('stations'));
     }
 
     /**

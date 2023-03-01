@@ -41,6 +41,7 @@
             <li><a href="/main-dashboard"><i class="fa fa-home"></i> Dashboard </a></li>
             <li><a href="/fuel-request"><i class="fa fa-edit"></i> Fuel Requests </a></li>
             <li><a href="/fuel-request"><i class="fa fa-home"></i> Fuel Request </a></li>
+            <li><a href="/stations"><i class="fa fa-desktop"></i> Stations </a></li>
             <li><a href="/schedule"><i class="fa fa-desktop"></i> Shedule </a></li>
             @endif
             

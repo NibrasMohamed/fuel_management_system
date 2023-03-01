@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\Station;
 use App\Models\Token;
 use App\Models\Vehicle;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
+use PDF;
 
 class PaymentController extends Controller
 {
@@ -51,7 +53,10 @@ class PaymentController extends Controller
             $station = Station::where('id', $token->station_id)->first();
             $station->fuel_stock = $station->fuel_stock - $token->fuel_quantity;
             $station->save();
-            return redirect()->back()->with('success', 'Payment Success!');
+
+            $pdf = PDF::loadView('pages.payment.reciept', compact('token'));
+            return $pdf->stream('payment_recipt_'.$token->id.'_'.Carbon::now()->format('Y-m-d-H:M:S'));
+            // return redirect()->back()->with('success', 'Payment Success!');
         }
     }
 
