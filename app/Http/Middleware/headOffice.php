@@ -18,7 +18,6 @@ class headOffice
     public function handle(Request $request, Closure $next)
     {
         if (!Auth::check() || !auth()->user()->hasRole('Admin') && !auth()->user()->hasRole('Head-Office')) {
-            dd(auth()->user()->hasRole('Head-Office'));
             if (!Auth::check()) {
                 redirect('/register');
             }

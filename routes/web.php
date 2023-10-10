@@ -36,8 +36,8 @@ Route::post('/register-customer', [RegisterController::class, 'store']);
 Route::get('/plain-page', function () {
     return view('pages.painpage');
 });
-Route::get('/', function(){
-   return redirect('/register');
+Route::get('/', function () {
+    return redirect('/register');
 });
 Route::group(['middleware' => 'auth'], function () {
     // Route::get('/', function(){
@@ -45,19 +45,11 @@ Route::group(['middleware' => 'auth'], function () {
     // });
     //route for logout
     Route::get('/logout', [LoginController::class, 'logout']);
-  
+
 
     //routes for manager
     Route::group(['middleware' => 'manager'], function () {
         Route::get('/dashboard', [DashboardController::class, 'index']);
-        
-
-        Route::get('/employees', [EmployeeController::class, 'index']);
-        Route::get('/new-employee', [EmployeeController::class, 'create']);
-        Route::post('/new-employee', [EmployeeController::class, 'store']);
-        Route::get('/edit-employee/{id}', [EmployeeController::class, 'edit']);
-        Route::post('/update-employee/{id}', [EmployeeController::class, 'update']);
-        Route::get('/delete-employee/{id}', [EmployeeController::class, 'destroy']);
 
         //routes for token
         Route::get('/token', [TokenController::class, 'index']);
@@ -70,9 +62,8 @@ Route::group(['middleware' => 'auth'], function () {
 
         //route for customers
         Route::get('/customers', [CustomerController::class, 'index']);
-
-        
     });
+    
 
     //routes for head-office
     Route::group(['middleware' => 'head_office'], function () {
@@ -84,7 +75,13 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('/stations', [StationController::class, 'index']);
         //route for schedule
         Route::get('/schedule', [ScheduleController::class, 'index']);
-        
+
+        Route::get('/employees', [EmployeeController::class, 'index']);
+        Route::get('/new-employee', [EmployeeController::class, 'create']);
+        Route::post('/new-employee', [EmployeeController::class, 'store']);
+        Route::get('/edit-employee/{id}', [EmployeeController::class, 'edit']);
+        Route::post('/update-employee/{id}', [EmployeeController::class, 'update']);
+        Route::get('/delete-employee/{id}', [EmployeeController::class, 'destroy']);
     });
 
     //routes for token
@@ -103,4 +100,5 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/fuel-availabilty', [FuelRequestController::class, 'create']);
     Route::post('/make-fuel-request', [FuelRequestController::class, 'store']);
     Route::post('/make-payment/{id}', [PaymentController::class, 'store']);
+    Route::get('/pay/{id}', [PaymentController::class, 'create']);
 });

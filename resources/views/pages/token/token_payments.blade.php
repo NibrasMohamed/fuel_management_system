@@ -37,14 +37,9 @@
         </div>
 
         <div class="title_right">
-          {{-- <div class="col-md-5 col-sm-5   form-group pull-right top_search">
-            <div class="input-group">
-              <input type="text" class="form-control" placeholder="Search for...">
-              <span class="input-group-btn">
-                <button class="btn btn-default" type="button">Go!</button>
-              </span>
-            </div>
-          </div> --}}
+          <div class="form-group pull-right top_search">
+            <a href="/token?print=true" class="btn btn-success"><i class="fa fa-floppy-o"></i> Print</a>
+          </div>
         </div>
       </div>
 
@@ -80,7 +75,7 @@
                     <td> {{ $token->fuel_quantity }} </td>
                     <td> {{ $token->expected_time }} </td>
                     <td> ${{ $token->fuel_quantity * 400 }} </td>
-                    <td> {{ $token->payment == 1 ? "Payed" : "Payment pending" }} </td>
+                    <td> {{ $token->payment == 1 ? "Paid" : "Payment pending" }} </td>
                   </tr>    
                   @endforeach
                  

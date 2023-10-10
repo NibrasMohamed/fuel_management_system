@@ -16,7 +16,8 @@ class CustomerController extends Controller
      */
     public function index(Request $request)
     {
-        $customers = Customer::get();
+        $user = auth()->user();
+        $customers = Customer::where('station_id', $user->employee->station_id)->get();
 
         if ($request->print == true) {
             $pdf = PDF::loadView('pages.customers.pdf', compact('customers'));

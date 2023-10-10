@@ -28,9 +28,11 @@ class PaymentController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request, $id)
     {
-        //
+        $token = Token::find($id);
+
+        return view('pages.token.payment', compact('token'));
     }
 
     /**

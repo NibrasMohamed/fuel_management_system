@@ -146,7 +146,7 @@
                                     <div class="col-md-6 col-sm-6 ">
                                         <select name="station" id="stations" class="form-control" disabled>
                                             @foreach ($stations as $station)
-                                                <option {{ $district->id == $my_station->id ? 'selected' : '' }}
+                                                <option {{ $station->id == $my_station->id ? 'selected' : '' }}
                                                     value="{{ $station->id }}"> {{ $station->station_name }} </option>
                                             @endforeach
                                         </select>

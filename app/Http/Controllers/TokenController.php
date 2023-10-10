@@ -105,7 +105,7 @@ class TokenController extends Controller
             }
             // dd($token->customer->user->id);
             $message = Message::create([
-                'message' => "Your request accepeted.please be On time!",
+                'message' => "Your request accepeted.please settle the payment!",
                 'user_id' => $token->customer->user->id
             ]);
         }else{

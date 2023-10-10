@@ -21,7 +21,7 @@ class LoginController extends Controller
 
         if($user){
             if (Hash::check($request->password, $user->password)) {
-                // dd(auth()->user()->hasRole("Head-Office"));
+
                 Auth::login($user);
                 if (auth()->user()->hasRole("Head-Office")) {
                     return redirect('/main-dashboard');

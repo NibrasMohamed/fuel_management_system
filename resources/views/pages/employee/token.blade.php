@@ -75,8 +75,8 @@
                     <td> {{ $token->fuel_quantity }} L</td>
                     <td> {{ $token->date }} </td>
                     <td> {{ $token->expected_time }} </td>
-                    <td> {{ $token->payment? "Payed" : "Payment Pending" }} </td>
-                    <td> <a href="/update-request/{{$token->id}}?payment=1" class="btn btn-warning"> Payed</a><a href="/update-request/{{$token->id}}?payment=0"  class="btn btn-danger">Declined</a><a href="/view-token/{{$token->id}}"  class="btn btn-success">View</a> </td>
+                    <td> {{ $token->payment? "Paid" : "Payment Pending" }} </td>
+                    <td> <a href="/update-request/{{$token->id}}?payment=1" class="btn btn-warning"> Paid</a><a href="/update-request/{{$token->id}}?payment=0"  class="btn btn-danger">Declined</a><a href="/view-token/{{$token->id}}"  class="btn btn-success">View</a> </td>
                   </tr>    
                   @endforeach
                  

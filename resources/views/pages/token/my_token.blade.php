@@ -127,7 +127,13 @@
                                         <img src="{{ url('/view-qr/'.$token->qr_code) }}" alt="" srcset="">
                                     </div>
                                 </div>
-
+                                <div class="item form-group text-center">
+                                    <div class="col-md-6 col-sm-6 offset-md-3">
+                                        <button class="btn btn-primary" type="button">Cancel</button>
+                                        <button class="btn btn-primary" type="reset">Reset</button>
+                                        <a href="/pay/{{$token->id}}" type="submit" class="btn btn-success submit-btn">Make Payment</a>
+                                    </div>
+                                </div>
                                 
 
                                 &nbsp;

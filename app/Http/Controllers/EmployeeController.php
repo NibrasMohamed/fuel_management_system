@@ -68,7 +68,7 @@ class EmployeeController extends Controller
                 'last_name' => $request['last_name'],
                 'phone_no' => $request['phone_no'],
                 'user_id' => $user->id,
-                'station_id' => 1
+                'station_id' =>$request->station
             ]);
 
             return redirect()->back()->with('success', 'successfully created the employee');

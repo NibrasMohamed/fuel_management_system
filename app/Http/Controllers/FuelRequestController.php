@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\FuelRequest;
 use App\Models\Location;
+use App\Models\Message;
 use App\Models\Station;
 use App\Models\User;
 use Carbon\Carbon;
@@ -45,10 +46,6 @@ class FuelRequestController extends Controller
             $location_id = 0;
         }
 
-        if (!Session::get('district')) {
-            Session::put('district', $location_id);
-        }
-
         $districts = Location::get();
         $stations = Station::get();
 
@@ -65,6 +62,7 @@ class FuelRequestController extends Controller
      */
     public function store(Request $request)
     {
+
         $request->validate([
             'fuel' => 'required',
             'date' => 'required',
@@ -84,6 +82,17 @@ class FuelRequestController extends Controller
                 'requested_date' => $this->datetoDate($request->date),
                 'expected_time' => $this->timeToDate($request->time)
             ]);
+
+            $dipatch_officers = User::join('roles', 'roles.id', 'users.role_id')
+                                    ->where('roles.name', 'like','%Head-Office%')->get();
+
+            foreach ($dipatch_officers as $key => $dipatch_officer) {
+                $message = Message::create([
+                    'message' => $fuel_request->station->station_name. " Has requested ". $fuel_request->fuel_qty . "Liters",
+                    'user_id' => $dipatch_officer->id
+                ]);
+            }
+            
         }else{
             return redirect()->back()->with('error', 'We Already recived a reqeust. Please Wait untill delivery!');
         }
@@ -127,7 +136,7 @@ class FuelRequestController extends Controller
         if (!$fuel_request) {
             return redirect()->back()->with('error', 'somthing went wrong.... please reload the page!');
         }
-
+        // dd($request->status);
         $fuel_request->status = $request->status;
         $fuel_request->save();
 

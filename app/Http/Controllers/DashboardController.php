@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\FuelRequest;
 use Illuminate\Http\Request;
 
 class DashboardController extends Controller
@@ -23,7 +24,8 @@ class DashboardController extends Controller
      */
     public function create()
     {
-        return view('pages.head_office_dashboard');
+        $fuel_requests = FuelRequest::get();
+        return view('pages.head_office_dashboard', compact('fuel_requests'));
     }
 
     /**
